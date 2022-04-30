@@ -1,32 +1,32 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link " href="#">Home
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+          <a class="nav-link " href="{{ path('home') }}"> Accueil 
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" href="#"> Contact </a>
         </li>
+       
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link" href='{{path('article')}}'> Articles </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-      
-      </ul>
-      <form class="d-flex" data-dashlane-rid="d3a05d02d7952a1c" data-form-type="">
-      </form>
-    </div>
-  </div>
-</nav>
 
+         <li class="nav-item">
+          <a class="nav-link" href='{{path('admin')}}'> Tableau de bord </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Connexion </a>
+        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+   <!-- Responsive navbar-->
+       
 <style> 
 body {
   background-color:white;
