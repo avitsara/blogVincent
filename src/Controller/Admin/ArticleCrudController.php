@@ -7,7 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 class ArticleCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -18,10 +18,16 @@ class ArticleCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
+        /// Champs qui s'afficheront dans le dashboard 
+        // pour l'article 
         return [
-            IdField::new('id'),
+           /// IdField::new('id'),
             TextField::new('title'),
+            TextField::new('slug'),
             TextEditorField::new('description'),
+            TextEditorField::new('content'),
+            DateField::new('createdAt')->hideOnForm(),
+            DateField::new('updatedAt')->hideOnForm(),
         ];
     }
     
