@@ -1,0 +1,22 @@
+<article class="mb-5">
+    <div class="row">
+            <div class="col-md-5">
+            {% if article.featuredImage %}
+
+                <a href={{ path('article',{'slug':article.slug })}}>
+                    <img src="uploads/{{ article.featuredImage.filename }}" alt="{{ article.featuredImage.altText }}"
+                    with="350" heigth="350"> 
+                </a>
+            {% endif %}
+            </div>
+
+            <div class="col-md-7">
+                <h2> 
+                   
+                </h2>
+
+
+            </div>
+    </div>
+
+</article>

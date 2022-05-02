@@ -19,17 +19,15 @@ class Article implements TimeStampedInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $title;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255,nullable:true)]
     private $description;
 
-    #[ORM\Column(type: 'datetime')]
-    private $createdAt;
-
+ 
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $UpdatedAt;
-
+    
     #[ORM\ManyToOne(targetEntity: Media::class, inversedBy: 'articles')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $featuredImage;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'articles')]
@@ -44,9 +42,13 @@ class Article implements TimeStampedInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $slug;
 
+    #[ORM\Column(type: 'datetime')]
+    private $createdAt;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int

@@ -8,6 +8,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+
 class ArticleCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -24,10 +26,11 @@ class ArticleCrudController extends AbstractCrudController
            /// IdField::new('id'),
             TextField::new('title'),
             TextField::new('slug'),
-            TextEditorField::new('description'),
+            TextField::new('description'),
             TextEditorField::new('content'),
             DateField::new('createdAt')->hideOnForm(),
             DateField::new('updatedAt')->hideOnForm(),
+            ImageField::new('featuredImage')->hideOnForm()
         ];
     }
     
