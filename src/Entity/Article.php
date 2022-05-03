@@ -45,6 +45,13 @@ class Article implements TimeStampedInterface
     #[ORM\Column(type: 'datetime')]
     private $createdAt;
 
+    #[ORM\Column(type: 'blob',nullable:false)]
+    private $imageData;
+    /// Nom de l'image qui va être uplaodé 
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private $imageFileName;
+
+    
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -181,4 +188,33 @@ class Article implements TimeStampedInterface
 
         return $this;
     }
+    public function setUploadDir(){
+
+    }
+
+    public function getImageData()
+    {
+        return $this->imageData;
+    }
+
+    public function setImageData($imageData): self
+    {
+        $this->imageData = $imageData;
+
+        return $this;
+    }
+
+    public function getImageFileName(): ?string
+    {
+        return $this->imageFileName;
+    }
+
+    public function setImageFileName(?string $imageFileName): self
+    {
+        $this->imageFileName = $imageFileName;
+
+        return $this;
+    }
+
+   
 }

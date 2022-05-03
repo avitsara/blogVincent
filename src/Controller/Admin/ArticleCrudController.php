@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 
 class ArticleCrudController extends AbstractCrudController
 {
@@ -30,7 +31,12 @@ class ArticleCrudController extends AbstractCrudController
             TextEditorField::new('content'),
             DateField::new('createdAt')->hideOnForm(),
             DateField::new('updatedAt')->hideOnForm(),
-            ImageField::new('featuredImage')->hideOnForm()
+            Field::new('imageFile')->setFormType(VichImageType::class)->onlyOnDetail(),
+            ImageField::new('imageFileName')
+            ->setBasePath('/public/upload/')
+            ->setUploadDir('public/upload/')
+            ,
+
         ];
     }
     
