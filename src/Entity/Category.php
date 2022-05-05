@@ -102,4 +102,9 @@ class Category
 
         return $this;
     }
+    /// Pour le champ catégorie associé à l'article 
+    public function __toString():String
+    {
+        return $this->name;
+    }
 }

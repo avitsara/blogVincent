@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -36,8 +37,9 @@ class ArticleCrudController extends AbstractCrudController
             ->setBasePath('/upload/images')
             ->setUploadDir('/public/upload/images')
             ->setUploadedFileNamePattern('[randomhash].[extension]')
-            ->setRequired('false')
-            ,
+            ->setRequired('false'),
+            /// champ associé à la catégorie 
+            AssociationField::new('category'),
 
         ];
     }

@@ -4,7 +4,13 @@ namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ColorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 
+/**==== PERMET DE GÉRER LES CATÉGORIES ====*/
 class CategoryCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -12,14 +18,14 @@ class CategoryCrudController extends AbstractCrudController
         return Category::class;
     }
 
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
+        
+            yield TextField::new('name');
+            yield SlugField::new('slug')->setTargetFieldName('name');
+            yield ColorField::new('color');
+        
     }
-    */
+    
 }
