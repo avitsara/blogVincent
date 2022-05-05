@@ -7,7 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Model\TimeStampedInterface;
-
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+/**
+ * @vich\Uploadable
+ */
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article implements TimeStampedInterface
 {
@@ -26,9 +31,7 @@ class Article implements TimeStampedInterface
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $UpdatedAt;
     
-    #[ORM\ManyToOne(targetEntity: Media::class, inversedBy: 'articles')]
-    #[ORM\JoinColumn(nullable: true)]
-    private $featuredImage;
+   
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'articles')]
     private $category;
@@ -44,12 +47,14 @@ class Article implements TimeStampedInterface
 
     #[ORM\Column(type: 'datetime')]
     private $createdAt;
+   
 
-    #[ORM\Column(type: 'blob',nullable:false)]
-    private $imageData;
-    /// Nom de l'image qui va être uplaodé 
-    #[ORM\Column(type: 'string', length: 255, nullable: false)]
-    private $imageFileName;
+    #[ORM\Column(type:'string',length : 255, nullable:true)]
+    private $image;
+
+    #[Vich\UploadableField(mapping:'article',fileNameProperty:'image')]
+    private $imageFile;
+
 
     
     public function __construct()
@@ -111,17 +116,7 @@ class Article implements TimeStampedInterface
         return $this;
     }
 
-    public function getFeaturedImage(): ?Media
-    {
-        return $this->featuredImage;
-    }
 
-    public function setFeaturedImage(?Media $featuredImage): self
-    {
-        $this->featuredImage = $featuredImage;
-
-        return $this;
-    }
 
     public function getCategory(): ?Category
     {
@@ -191,30 +186,34 @@ class Article implements TimeStampedInterface
     public function setUploadDir(){
 
     }
+    /**== GETTERS ET SETTERS POUR LE CHAMP IMAGE == */
 
-    public function getImageData()
-    {
-        return $this->imageData;
+    /**
+     * @return string|null
+     */
+    public function getImage(): ?string{
+        return $this->image;
     }
 
-    public function setImageData($imageData): self
-    {
-        $this->imageData = $imageData;
-
+    /**
+     * @param string|null $image
+     */
+    public function setImage(?string $image): self{
+        $this->image = $image;
         return $this;
     }
-
-    public function getImageFileName(): ?string
-    {
-        return $this->imageFileName;
+    /**
+     * @return File|null
+     */
+    public function getImageFile(): ?string{
+        return $this->getImageFile;
     }
-
-    public function setImageFileName(?string $imageFileName): self
-    {
-        $this->imageFileName = $imageFileName;
-
-        return $this;
+    /**
+     * @param File|null $imageFile
+     */
+    public function setImageFile(?File $imageFile){
+        $this->imageFile = $imageFile;
     }
-
+   
    
 }

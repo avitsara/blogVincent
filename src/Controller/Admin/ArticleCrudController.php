@@ -32,9 +32,11 @@ class ArticleCrudController extends AbstractCrudController
             DateField::new('createdAt')->hideOnForm(),
             DateField::new('updatedAt')->hideOnForm(),
             Field::new('imageFile')->setFormType(VichImageType::class)->onlyOnDetail(),
-            ImageField::new('imageFileName')
-            ->setBasePath('/public/upload/')
-            ->setUploadDir('public/upload/')
+            ImageField::new('image')
+            ->setBasePath('/upload/images')
+            ->setUploadDir('/public/upload/images')
+            ->setUploadedFileNamePattern('[randomhash].[extension]')
+            ->setRequired('false')
             ,
 
         ];
